@@ -1067,6 +1067,7 @@ export interface RESTSubscriptionConfiguration {
 export interface URLQueryConfiguration {
   name: string;
   value: string;
+  default: string;
 }
 
 export interface HTTPHeader {
@@ -3209,7 +3210,7 @@ export const RESTSubscriptionConfiguration = {
 };
 
 function createBaseURLQueryConfiguration(): URLQueryConfiguration {
-  return { name: "", value: "" };
+  return { name: "", value: "", default: "" };
 }
 
 export const URLQueryConfiguration = {
@@ -3217,6 +3218,7 @@ export const URLQueryConfiguration = {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       value: isSet(object.value) ? String(object.value) : "",
+      default: isSet(object.default) ? String(object.default) : "",
     };
   },
 
@@ -3224,6 +3226,7 @@ export const URLQueryConfiguration = {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.value !== undefined && (obj.value = message.value);
+    message.default !== undefined && (obj.default = message.default);
     return obj;
   },
 
@@ -3231,6 +3234,7 @@ export const URLQueryConfiguration = {
     const message = createBaseURLQueryConfiguration();
     message.name = object.name ?? "";
     message.value = object.value ?? "";
+    message.default = object.default ?? "";
     return message;
   },
 };

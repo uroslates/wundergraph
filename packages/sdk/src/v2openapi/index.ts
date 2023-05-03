@@ -305,6 +305,7 @@ class RESTApiBuilder {
 						{
 							name: param.name,
 							value: `{{ .arguments.${this.sanitizeName(param.name)} }}`,
+							default: param.schema && (param.schema as any).default,
 						},
 					];
 					break;
@@ -446,7 +447,8 @@ class RESTApiBuilder {
 					schema: componentSchema,
 					enclosingTypes: [],
 					parentTypeName: fieldTypeName,
-					fieldName: '',
+					// fieldName: '',
+					fieldName,
 					verb,
 					path,
 				});
@@ -928,6 +930,7 @@ class RESTApiBuilder {
 						fields: [
 							...(node.fields || []),
 							{
+								// TODO: mozda ovde da se doda defaultValue
 								kind: Kind.INPUT_VALUE_DEFINITION,
 								name: {
 									kind: Kind.NAME,
@@ -1161,6 +1164,7 @@ class RESTApiBuilder {
 	): InputObjectTypeDefinitionNode => {
 		return {
 			kind: Kind.INPUT_OBJECT_TYPE_DEFINITION,
+			// TODO: ili ovde u svaki fields da se doda defaultValue!?
 			fields: fields,
 			name: {
 				kind: Kind.NAME,

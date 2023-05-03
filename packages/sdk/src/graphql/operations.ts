@@ -150,6 +150,7 @@ export const parseGraphQLOperations = (
 	graphQLSchema: string,
 	loadOperationsOutput: LoadOperationsOutput,
 	options: ParseOperationsOptions = defaultParseOptions
+	// TODO: 1. ovde prosledi definiciju sa defaultValues
 ): ParsedOperations => {
 	let parsedGraphQLSchema = buildSchema(graphQLSchema);
 	if (parsedGraphQLSchema.getQueryType() === undefined) {
@@ -169,6 +170,7 @@ export const parseGraphQLOperations = (
 						const parsedOperation = parse(content);
 						const operationWithoutHooksVariables = visit(parsedOperation, {
 							VariableDefinition: {
+								// TODO: 2. ovde prosiri sa defaultValues setovano
 								enter: (node) => {
 									if (node.directives?.some((directive) => directive.name.value === 'hooksVariable')) {
 										return null;

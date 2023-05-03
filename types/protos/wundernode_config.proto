@@ -409,6 +409,7 @@ message RESTSubscriptionConfiguration {
 message URLQueryConfiguration {
 	string name = 1;
 	string value = 2;
+	string default = 3;
 }
 
 message HTTPHeader {

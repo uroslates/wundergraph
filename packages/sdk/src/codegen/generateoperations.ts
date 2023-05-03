@@ -26,6 +26,7 @@ export const generateOperations = async (config: GenerateConfig) => {
 		if (!fs.existsSync(operationDir)) {
 			fs.mkdirSync(operationDir, { recursive: true });
 		}
+		// TODO: ovde vidi da prosledis config.resolved.application.EngineConfiguration.DataSources (tu je info o defaultValue)
 		const operationNode = buildOperationNodeForField({
 			field: field.name,
 			schema,
